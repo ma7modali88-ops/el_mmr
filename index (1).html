@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>الممر | منيو</title>
+<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;800&display=swap" rel="stylesheet">
+<style>
+:root{--bg1:#fff;--bg2:#e6f3fc;--ink:#1f4e79;--soft:#6f9cc0;--gold:#4aa3d8}
+:root[data-t=dark]{--bg1:#0e2233;--bg2:#081724;--ink:#eaf6ff;--soft:#a9cfe8;--gold:#8fd0f5}
+@media(prefers-color-scheme:dark){:root:not([data-t=light]){--bg1:#0e2233;--bg2:#081724;--ink:#eaf6ff;--soft:#a9cfe8;--gold:#8fd0f5}}
+*{box-sizing:border-box;margin:0}
+body{font-family:Cairo,sans-serif;background:linear-gradient(var(--bg1),var(--bg2));color:var(--ink);min-height:100vh}
+header{text-align:center;padding:24px 12px 8px;position:relative}
+header img{width:130px;height:130px;border-radius:50%;object-fit:cover;box-shadow:0 0 24px var(--gold)}
+h1{font-size:30px;margin-top:8px}
+header p{color:var(--soft);letter-spacing:3px}
+#tg{position:absolute;top:14px;left:14px;border:1px solid var(--gold);background:none;color:var(--ink);border-radius:20px;padding:6px 12px;font:inherit;cursor:pointer}
+nav{position:sticky;top:0;background:var(--bg1);display:flex;gap:8px;overflow-x:auto;padding:10px;z-index:5;border-bottom:1px solid var(--bg2)}
+nav a{flex:none;padding:6px 14px;border-radius:20px;border:1px solid var(--gold);color:var(--ink);text-decoration:none;font-size:14px}
+nav a.on{background:var(--gold);color:#fff}
+main{max-width:640px;margin:auto;padding:8px 14px 40px}
+h2{color:var(--gold);margin:26px 0 8px;font-size:22px;scroll-margin-top:60px}
+.i{display:flex;justify-content:space-between;gap:10px;padding:10px 0;border-bottom:1px dashed var(--soft)}
+.i small{display:block;color:var(--soft);font-size:13px}
+.p{color:var(--gold);font-weight:800;white-space:nowrap}
+</style>
+</head>
+<body>
+<header><button id="tg">🌓</button><img src="logo.jpg.jpeg" alt="الممر"><h1>الممر</h1><p>AL-MAMAR</p></header>
+<nav id="nav"></nav><main id="m"></main>
+<script>
+const D=[
+["سوفت درينك",[["مياه",10],["بيبسي",30],["سفن",30],["شويبس",35],["فيروز",35],["بريل",35],["ريد بول",95],["مونستر",95],["فيوري",40],["استينج",35]]],
+["مزاج",[["شاي",15],["شاي باكت",20],["شاي أخضر",20],["شاي فواكه",25],["شاي بحليب",25],["شاي قرنفل",15],["شاي نعناع",15],["شاي سبيشال",25],["براد شاي",30]]],
+["الكيف",[["قهوة تركي سنجل",30],["قهوة تركي دبل",40],["قهوة فرنساوي",45],["قهوة بندق",45],["قهوة نوتيلا",45],["اسبرسو سنجل",40],["اسبرسو دبل",60],["ميكاتو سنجل",45],["ميكاتو دبل",65],["كابتشينو",70],["قهوة غامق",40],["فلات وايت",75],["امريكان بلاك",50],["اسبانيش لاتيه",75],["موكا دارك",65],["موكا وايت",65],["نسكافيه بلاك",25],["نسكافيه حليب",35]]],
+["أعشاب",[["ينسون",20],["قرفة",25],["نعناع",20],["زنجبيل",35],["ليمون",20],["زنجبيل حليب",35],["قرفة حليب",35],["قرفة زنجبيل",30],["هوت سيدر",40],["كوكتيل اعشاب",35],["صيدلية",40]]],
+["الدفء",[["سحلب",35],["سحلب مكسرات",45],["سحلب عسل مكسرات",50],["هوت شوكولاتة",30],["هوت شوكولاتة مارشميلو",40],["حمص",35]]],
+["روقان",[["ترافيل ميكس",70,"برتقال + أناناس + فراولة"],["فلوريدا",65,"برتقال + مانجو + جوافة"],["اركاديا",80,"مانجو + موز + آيس كريم + فليفر فراولة"],["هافانا",80,"كيوي + أناناس"],["بيناكولادا",80,"أناناس + جوز هند + آيس كريم"],["روقانك",60,"جوافة + نعناع"],["فوقانك",65,"فراولة + نعناع"],["نعنشتك",65,"بطيخ + نعناع"],["يوم فري",75,"جوافة + موز + آيس كريم + فانيليا + نعناع"],["كركديه بيري",55,"كركديه + بلوبيري + نعناع"],["زبادي فواكه",75,"مانجو + فراوله + موز"],["مانجو كيوي",80,"مانجو + كيوي"],["كانجو مانجو",80,"مانجو + خوخ"],["تروبيكانا",95,"خوخ + مانجو + اناناس + مكسرات"],["روقان الفيلا",120]]],
+["خليك فريش",[["مانجو",50],["فراولة",50],["جوافة",45],["موز",45],["بطيخ",50],["كيوي",60],["اناناس",60],["برتقال",45],["ليمون",35],["ليمون نعناع",45],["افوكادو",85],["بلح",55]]],
+["طري على قلبك",[["مانجو سموزي",60],["فراولة سموزي",60],["بلوبيري سموزي",65],["كيوي سموزي",65],["بطيخ سموزي",60],["بطيخ نعناع سموزي",80],["ليمون سموزي",40],["ليمون نعناع سموزي",50]]],
+["الباور العالي",[["صن رايز",50,"سفن + ليمون + نعناع + فليفر نعناع"],["صن شاين",50,"سفن + ليمون + نعناع + فليفر فراولة"],["موخيتو ريد بول",120],["بلو اورانج",50,"سفن + برتقال + فليفر رمان"],["بلو اوشن",55,"سفن + ليمون + فليفر بلو كوراساو"],["باشون سبلاش",45,"سفن + ليمون + فليفر باشون فروت"]]],
+["شغل ايجيبت",[["ايس لاتيه",55],["ايس اسبانيش لاتيه",85],["ايس ميكاتو كراميل",60],["ايس موكا دارك",75],["ايس موكا وايت",75],["ايس امريكانو بلاك",65],["فرابتشينو كوفي",60],["فرابتشينو فليفر",85]]],
+["حلاوة روح",[["ميلك شيك",60,"شوكولاتة، فانيليا، فراولة، مانجو"],["ميلك شيك اوريو",75],["ميلك شيك تونكز",75],["ميلك شيك هوهوز",75],["بلوبيري شيك",75],["كراميل شيك",75]]],
+["الديزيرت والإضافات",[["وافل فليفر",70],["وافل فواكه",100],["وافل ميكس",120],["فليفر",15],["عسل",15],["مكسرات",25]]],
+["شيشة",[["معسل",15],["فواكه",90],["شيشة الفيلا",130],["فحم حراري",20],["لي طبي",25]]]];
+const m=document.getElementById("m"),n=document.getElementById("nav");
+D.forEach((c,k)=>{
+n.insertAdjacentHTML("beforeend",`<a href="#c${k}">${c[0]}</a>`);
+m.insertAdjacentHTML("beforeend",`<h2 id="c${k}">${c[0]}</h2>`+c[1].map(i=>`<div class="i"><div>${i[0]}${i[2]?`<small>${i[2]}</small>`:""}</div><div class="p">${i[1]} ج</div></div>`).join(""));
+});
+const L=[...n.children],H=[...m.querySelectorAll("h2")];
+addEventListener("scroll",()=>{let a=0;H.forEach((h,k)=>{if(h.getBoundingClientRect().top<90)a=k});L.forEach((x,k)=>x.classList.toggle("on",k==a))});
+document.getElementById("tg").onclick=()=>{const r=document.documentElement,d=getComputedStyle(r).getPropertyValue("--bg1").trim()=="#fff";r.dataset.t=d?"dark":"light"};
+</script>
+</body>
+</html>
